@@ -1,5 +1,8 @@
 package com.tencent.wxcloudrun.controller;
 
+import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.tomcat.util.json.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.tencent.wxcloudrun.config.ApiResponse;
@@ -7,12 +10,14 @@ import com.tencent.wxcloudrun.dto.CounterRequest;
 import com.tencent.wxcloudrun.model.Counter;
 import com.tencent.wxcloudrun.service.CounterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.Optional;
 import java.util.List;
 
@@ -78,6 +83,36 @@ public class CounterController {
     } else {
       return ApiResponse.error("参数action错误");
     }
+  }
+
+
+  @GetMapping(value = "/api/getTest")
+  ApiResponse getTest() {
+    logger.info("/api/count get request");
+
+    String  str = """
+            {
+                    "goods": {
+                      "id": 1,
+                      "image": "/image/goods1.png",
+                      "title": "新鲜梨花带雨",
+                      "price": 0.01,
+                      "stock": "有货",
+                      "detail": "这里是梨花带雨详情。",
+                      "parameter": "125g/个",
+                      "service": "不支持退货"
+                    },
+                    "num": 1,
+                    "totalNum": 0,
+                    "hasCarts": false,
+                    "curIndex": 0,
+                    "show": false,
+                    "scaleCart": false
+                  }
+            """;
+
+
+    return ApiResponse.ok(JSONUtil.parseObj(str));
   }
   
 }
