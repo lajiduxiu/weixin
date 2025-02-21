@@ -90,26 +90,24 @@ public class CounterController {
   ApiResponse getTest() {
     logger.info("/api/count get request");
 
-    String  str = """
-            {
-                    "goods": {
-                      "id": 1,
-                      "image": "/image/goods1.png",
-                      "title": "新鲜梨花带雨",
-                      "price": 0.01,
-                      "stock": "有货",
-                      "detail": "这里是梨花带雨详情。",
-                      "parameter": "125g/个",
-                      "service": "不支持退货"
-                    },
-                    "num": 1,
-                    "totalNum": 0,
-                    "hasCarts": false,
-                    "curIndex": 0,
-                    "show": false,
-                    "scaleCart": false
-                  }
-            """;
+    String  str = "{\n" +
+            "                    \"goods\": {\n" +
+            "                      \"id\": 1,\n" +
+            "                      \"image\": \"/image/goods1.png\",\n" +
+            "                      \"title\": \"新鲜梨花带雨\",\n" +
+            "                      \"price\": 0.01,\n" +
+            "                      \"stock\": \"有货\",\n" +
+            "                      \"detail\": \"这里是梨花带雨详情。\",\n" +
+            "                      \"parameter\": \"125g/个\",\n" +
+            "                      \"service\": \"不支持退货\"\n" +
+            "                    },\n" +
+            "                    \"num\": 1,\n" +
+            "                    \"totalNum\": 0,\n" +
+            "                    \"hasCarts\": false,\n" +
+            "                    \"curIndex\": 0,\n" +
+            "                    \"show\": false,\n" +
+            "                    \"scaleCart\": false\n" +
+            "                  }";
 
 
     return ApiResponse.ok(JSONUtil.parseObj(str));
