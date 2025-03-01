@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tencent.wxcloudrun.web.category.mapper.SysCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.tencent.wxcloudrun.web.category.entity.SysCategory">
+            <id property="categoryId" column="category_id" jdbcType="INTEGER"/>
+            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+            <result property="orderNum" column="order_num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        category_id,category_name,order_num
+    </sql>
+</mapper>

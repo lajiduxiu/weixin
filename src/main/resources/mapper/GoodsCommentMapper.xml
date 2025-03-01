@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tencent.wxcloudrun.web.goods_comment.mapper.GoodsCommentMapper">
+<select id="commentList" resultType="com.tencent.wxcloudrun.web.goods_comment.entity.GoodsComment">
+select w.nick_name,w.avatar_url,g.* from goods_comment as g inner join wx_user as
+                                    w on g.openid = w.openid where g.goods_id = #{goodsId} order by g.create_time desc
+</select>
+    <select id="getList" resultType="com.tencent.wxcloudrun.web.goods_comment.entity.GoodsComment">
+        select c.*,u.avatar_url,u.nick_name,gs.goods_name,gs.goods_image
+        from goods_comment as c
+        inner join wx_user as u on c.openid = u.openid
+        inner join sys_goods as gs on gs.goods_id = c.goods_id
+        order by c.create_time desc
+    </select>
+    <resultMap id="BaseResultMap" type="com.tencent.wxcloudrun.web.goods_comment.entity.GoodsComment">
+            <id property="commitId" column="commit_id" jdbcType="INTEGER"/>
+            <result property="openid" column="openid" jdbcType="VARCHAR"/>
+            <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+            <result property="commentText" column="comment_text" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        commit_id,openid,goods_id,
+        comment_text,create_time
+    </sql>
+</mapper>
